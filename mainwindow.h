@@ -21,6 +21,10 @@ private slots:
 
   void sl_console_finished();
 
+  void sl_console_output(const QString &text);
+
+  void on_ptn_mirror_clicked();
+
 protected:
   void setupConsole();
 

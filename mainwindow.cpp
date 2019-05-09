@@ -22,6 +22,8 @@ void MainWindow::sl_console_finished() {
   this->on_action_Exit_triggered();
 }
 
+void MainWindow::sl_console_output(const QString &text) {}
+
 void MainWindow::setupConsole() {
   if (console != nullptr) {
     console->deleteLater();
@@ -41,4 +43,9 @@ void MainWindow::setupConsole() {
   ui->tabWidget->addTab(console, "Console");
   connect(console, &QTermWidget::finished, this,
           &MainWindow::sl_console_finished);
+}
+
+void MainWindow::on_ptn_mirror_clicked() {
+  ui->tabWidget->setCurrentWidget(console);
+  console->sendText("sudo pacman-mirrors -i -c China -m rank\n");
 }
